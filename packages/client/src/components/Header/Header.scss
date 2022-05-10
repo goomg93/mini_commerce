@@ -1,0 +1,21 @@
+.header {
+	position: relative;
+	width: 600px;
+
+	.title {
+		font-size: 60px;
+		text-align: center;
+		border-bottom: 4px solid black;
+	}
+}
+
+.cartIcon {
+	position: fixed;
+	bottom: 100px;
+	right: 40px;
+	padding: 10px;
+	border: 1px solid black;
+	border-radius: 50%;
+	background-color: lightblue;
+	cursor: pointer;
+}
