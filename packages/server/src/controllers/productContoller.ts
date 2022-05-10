@@ -26,9 +26,11 @@ const insertCartList = async (req: Request, res: Response) => {
 		interface cartData {
 			productId: String;
 			quantity: Number;
+			name: String;
+			price: Number;
 		}
-		const insertCartData: cartData = req.body;
-		await productService.insertCartList(insertCartData);
+		const cartData: cartData = req.body;
+		await productService.insertCartList(cartData);
 
 		return res.status(200).json({ message: "insert success" });
 	} catch (err) {

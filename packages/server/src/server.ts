@@ -1,5 +1,6 @@
 import "dotenv/config";
 import Express from "express";
+import cors from "cors";
 import bodyParser from "body-parser";
 import dbUtil from "./utils/db.util";
 // import * as testModel from "./test.model";
@@ -9,6 +10,7 @@ const main = async () => {
 	await Promise.all([dbUtil.init()]);
 
 	const app = Express();
+	app.use(cors());
 	app.use(bodyParser.json());
 	app.use(routes);
 	// app.get('/', (_: Request, res: Response) => res.send('pong'));
