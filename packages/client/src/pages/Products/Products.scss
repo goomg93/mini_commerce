@@ -1,0 +1,15 @@
+* {
+	box-sizing: border-box;
+}
+
+.productList {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	.productWrapper {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+		grid-template-rows: auto;
+	}
+}

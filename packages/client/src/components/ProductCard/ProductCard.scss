@@ -1,0 +1,53 @@
+* {
+	box-sizing: border-box;
+}
+
+.productCardWrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border: 1px solid black;
+	margin: 20px;
+	width: 250px;
+
+	.quantityWrapper {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		.quantityBox {
+			display: flex;
+			align-items: center;
+
+			p {
+				margin: 10px 10px;
+				font-size: 20px;
+			}
+
+			.button {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				border: 1px solid black;
+				width: 20px;
+				height: 25px;
+				box-shadow: 1px 1px 1px black;
+				cursor: pointer;
+			}
+
+			.count {
+				text-align: center;
+				width: 20px;
+			}
+		}
+	}
+	.cart {
+		margin-bottom: 10px;
+		border: 1px solid black;
+		border-radius: 10px;
+		overflow: hidden;
+		box-shadow: 1px 1px 1px black;
+		cursor: pointer;
+	}
+}

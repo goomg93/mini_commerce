@@ -1,9 +1,6 @@
 import Cart from "../schema/cartSchema";
 import Product from "../schema/productSchema";
-interface cartData {
-	productId: String;
-	quantity: Number;
-}
+import { cartData } from "../services/productService";
 
 const getProductList = async () => {
 	const productList = await Product.find();
@@ -11,10 +8,28 @@ const getProductList = async () => {
 	return productList;
 };
 
+// const getProductInfoById = async (productId: String) => {
+// 	const productInfoById = await Product.find({
+// 		_id: productId,
+// 	}).select({ name: "$name", price: "$price" });
+
+// 	return productInfoById;
+// };
+
 const getCartList = async () => {
-	const cartList = await Cart.find();
+	const cartList = await Cart.find().select({
+		name: "$name",
+		price: "$price",
+		quantity: "$quantity",
+	});
 
 	return cartList;
+};
+
+const getCartItemByProductId = async (productId: String) => {
+	const cartItem = await Cart.find({ productId: productId });
+
+	return cartItem;
 };
 
 const insertCartList = async (insertCartData: cartData) => {
@@ -30,4 +45,20 @@ const deleteCartList = async (cartId: string) => {
 	return deleteResult;
 };
 
-export default { getProductList, getCartList, insertCartList, deleteCartList };
+const updateCartList = async (updateCartData: cartData) => {
+	const updateCart = await Cart.findOneAndUpdate(
+		{ productId: updateCartData.productId },
+		{ $inc: { quantity: updateCartData.quantity } }
+	);
+
+	return updateCart;
+};
+
+export default {
+	getProductList,
+	getCartList,
+	insertCartList,
+	deleteCartList,
+	getCartItemByProductId,
+	updateCartList,
+};

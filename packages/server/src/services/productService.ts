@@ -1,7 +1,9 @@
 import productDao from "../models/productDao";
-interface cartData {
+export interface cartData {
 	productId: String;
 	quantity: Number;
+	name: String;
+	price: Number;
 }
 
 const getProductList = async () => {
@@ -16,8 +18,27 @@ const getCartList = async () => {
 	return cartList;
 };
 
-const insertCartList = async (insertCartData: cartData) => {
-	const insertResult = await productDao.insertCartList(insertCartData);
+const insertCartList = async (cartData: cartData) => {
+	// const productInfoById: productInfo = await productDao.getProductInfoById(
+	// 	cartData.productId
+	// );
+
+	// const insertCartData: insertCartData = {
+	// 	productId: cartData.productId,
+	// 	name: productInfoById.name,
+	// 	price: productInfoById.price,
+	// 	quantity: cartData.quantity,
+	// };
+
+	const cartItemByProductId = await productDao.getCartItemByProductId(
+		cartData.productId
+	);
+	if (cartItemByProductId.length !== 0) {
+		const updateCart = await productDao.updateCartList(cartData);
+    console.log(updateCart)
+		return;
+	}
+	const insertResult = await productDao.insertCartList(cartData);
 	console.log(insertResult);
 	return;
 };
